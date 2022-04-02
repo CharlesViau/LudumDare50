@@ -11,7 +11,7 @@ namespace Managers
             base.Init();
         }
 
-        public int GetSpecificItemCount(ItemType type)
+        public int GetSpecificItemCount(ObjectType type)
         {
             return obj.Inventory.GetCountSpecificItem(type);
         }

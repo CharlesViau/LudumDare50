@@ -1,9 +1,9 @@
 using General;
 using UnityEngine;
 
-public class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.ConstructionArgs>, IPoolable
+public abstract class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.ConstructionArgs>, IPoolable
 {
-    [SerializeField]public readonly ItemType Type;
+    [SerializeField]public readonly ObjectType Type;
     
     public class ConstructionArgs : IArgs
     {
@@ -13,13 +13,7 @@ public class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.Co
             SpawningPosition = spawningPosition;
         }
     }
-    public void Interact(IInteract person)
-    {
-        if (person.Inventory.AddItem(this.Type, 1, out var over))
-        {
-            //TODO delete game object or some other shinanigan.
-        }
-    }
+    
 
     public static bool operator ==(Item a, Item b)
     {
@@ -80,9 +74,8 @@ public class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.Co
     {
         throw new System.NotImplementedException();
     }
+
+    public abstract void Interact(IInteract person);
+    
 }
 
-public enum ItemType
-{
-    Wood
-}
