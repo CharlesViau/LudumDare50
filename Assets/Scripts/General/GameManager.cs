@@ -7,7 +7,7 @@ namespace General
 {
     public class GameManager : MonoBehaviour
     {
-        private readonly List<IWrapperManager> _managers = new List<IWrapperManager>();
+        private readonly List<Manager> _managers = new List<Manager>();
 
         #region GameFlow (MainEntry)
 
@@ -84,10 +84,10 @@ namespace General
         private void AddManagersToList()
         {
             foreach (var type in
-                     Assembly.GetAssembly(typeof(IWrapperManager)).GetTypes().Where(myType =>
-                         myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(IWrapperManager))))
+                     Assembly.GetAssembly(typeof(Manager)).GetTypes().Where(myType =>
+                         myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Manager))))
             {
-                _managers.Add((IWrapperManager) type.GetProperty("Instance")?.GetValue(type));
+                _managers.Add((Manager) type.GetProperty("Instance")?.GetValue(type));
             }
         }
 

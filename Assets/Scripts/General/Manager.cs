@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Object = UnityEngine.Object;
 
 // ReSharper disable VirtualMemberCallInConstructor
@@ -18,6 +19,20 @@ namespace General
     /// </summary>
     public interface IWrapperManager : IManager
     {
+    }
+
+    public abstract class Manager : IManager
+    {
+        public abstract void Init();
+
+        public abstract void PostInit();
+
+
+        public abstract void Refresh();
+
+        public abstract void FixedRefresh();
+
+        public abstract void Clean();
     }
 
     public interface ICollectionManager<in T> where T : IUpdatable
@@ -60,9 +75,10 @@ namespace General
         }
     }
 
-    public abstract class MonoManager<T, M> : IWrapperManager where T : IUpdatable where M : class, IManager, new()
+    public abstract class MonoManager<T, M> : Manager, IWrapperManager
+        where T : IUpdatable where M : class, IManager, new()
     {
-        protected T obj;
+        public T obj { get; protected set; }
 
         #region Singleton
 
@@ -75,7 +91,7 @@ namespace General
 
         #endregion
 
-        public virtual void Init()
+        public override void Init()
         {
             if (obj == null)
             {
@@ -84,22 +100,22 @@ namespace General
             else obj.Init();
         }
 
-        public void PostInit()
+        public override void PostInit()
         {
             obj.PostInit();
         }
 
-        public void Refresh()
+        public sealed override void Refresh() 
         {
             obj.Refresh();
         }
 
-        public void FixedRefresh()
+        public sealed override void FixedRefresh()
         {
             obj.FixedRefresh();
         }
 
-        public void Clean()
+        public override void Clean()
         {
         }
     }
@@ -260,7 +276,7 @@ namespace General
     /// </summary>
     /// <typeparam name="T">Type to Manage</typeparam>
     /// <typeparam name="M">Manager type</typeparam>
-    public abstract class Manager<T, M> : IWrapperManager, ICollectionManager<T>
+    public abstract class Manager<T, M> : Manager, IWrapperManager, ICollectionManager<T>
         where T : IUpdatable where M : class, IManager, new()
     {
         #region Singleton
@@ -281,27 +297,27 @@ namespace General
 
         #endregion
 
-        public virtual void Init()
+        public override void Init()
         {
             manager.Init();
         }
 
-        public virtual void PostInit()
+        public override void PostInit()
         {
             manager.PostInit();
         }
 
-        public void Refresh()
+        public sealed override void Refresh()
         {
             manager.Refresh();
         }
 
-        public void FixedRefresh()
+        public sealed override void FixedRefresh()
         {
             manager.FixedRefresh();
         }
 
-        public void Clean()
+        public override void Clean()
         {
             manager.Clean();
         }

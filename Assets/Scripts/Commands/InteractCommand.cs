@@ -2,9 +2,14 @@
 {
     public class InteractCommand : ICommand
     {
+        private readonly IInteract _person;
+        public InteractCommand(IInteract person)
+        {
+            _person = person;
+        }
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            _person.Interact();
         }
     }
 }
