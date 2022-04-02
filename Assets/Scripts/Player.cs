@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using General;
 
-public class Player : MonoBehaviour, IUpdaptable
+public class Player : MonoBehaviour, IUpdatable
 {
+    public Inventory inventory;
     public void FixedRefresh()
     {
         throw new System.NotImplementedException();
@@ -24,16 +25,5 @@ public class Player : MonoBehaviour, IUpdaptable
     {
         throw new System.NotImplementedException();
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
