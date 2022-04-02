@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IInteract
 {
-    // Start is called before the first frame update
+
 
 }
 
