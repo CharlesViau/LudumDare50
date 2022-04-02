@@ -18,4 +18,9 @@ public class UIBehaviour : MonoBehaviour
     {
         woodCount.text = (_player.Inventory.GetCountSpecificItem(ItemType.Wood)).ToString();
     }
+
+    void OnPickup()
+    {
+        
+    }
 }
