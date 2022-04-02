@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.ConstructionArgs>, IPoolable
 {
+    [SerializeField]public readonly ItemType Type;
+    
     public class ConstructionArgs : IArgs
     {
         public Vector3 SpawningPosition;
@@ -11,14 +13,12 @@ public class Item : MonoBehaviour, IUpdatable, IInteractable, ICreatable<Item.Co
             SpawningPosition = spawningPosition;
         }
     }
-    
-    public readonly ItemType Type;
-    
-    
     public void Interact(IInteract person)
     {
-        //picking up
-        person.Inventory.AddItem(this, 1);
+        if (person.Inventory.AddItem(this.Type, 1, out var over))
+        {
+            //TODO delete game object or some other shinanigan.
+        }
     }
 
     public static bool operator ==(Item a, Item b)

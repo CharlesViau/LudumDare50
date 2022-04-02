@@ -5,34 +5,49 @@ using System.Linq;
 public class Inventory
 {
     private readonly int _capacity;
-    public int Count => content.Sum(couple => couple.Value);
+    public int Count => _content.Sum(couple => couple.Value);
 
-    private Dictionary<Item, int> content;
+    private Dictionary<ItemType, int> _content;
 
     public Inventory(int capacity)
     {
         _capacity = capacity;
     }
 
-    public void AddItem(Item item, int quantity)
+    public bool AddItem(ItemType item, int quantity, out int over)
     {
-        var currentSize = Count;
-        content[item] += currentSize + quantity <= _capacity ? quantity : _capacity - currentSize;
-    }
+        if (Count >= _capacity)
+        {
+            over = 0;
+            return false;
+        }
+        
+        if (!_content.ContainsKey(item))
+        {
+            _content.Add(item, 0);
+        }
 
-    public bool RemoveItem(Item item, int quantity)
-    {
-        if (!content.ContainsKey(item) || content[item] - quantity <= 0) return false;
-        content[item] -= quantity;
+        if (Count + quantity <= _capacity)
+        {
+            _content[item] += quantity;
+            over = 0;
+            return true;
+        }
+        over = Count + quantity - _capacity;
+        _content[item] += _capacity - Count;
+
         return true;
     }
 
-    //pour afficher la quantité d'items dans UIBehaviour
-    public int GetItem(ItemType type)
+    public bool RemoveItem(ItemType item, int quantity)
     {
-        //item = Item(type);
-        //if (!content.ContainsKey(item)) return 0;
-        //return content[item];
-        return 0;
+        if (!_content.ContainsKey(item) || _content[item] - quantity <= 0) return false;
+        _content[item] -= quantity;
+        return true;
+    }
+
+    public int GetCountSpecificItem(ItemType type)
+    {
+        return !_content.ContainsKey(type) ? 0 : _content[type];
     }
 }
