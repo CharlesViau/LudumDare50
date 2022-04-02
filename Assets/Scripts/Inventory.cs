@@ -7,14 +7,14 @@ public class Inventory
     private readonly int _capacity;
     public int Count => _content.Sum(couple => couple.Value);
 
-    private Dictionary<ItemType, int> _content;
+    private Dictionary<ObjectType, int> _content;
 
     public Inventory(int capacity)
     {
         _capacity = capacity;
     }
 
-    public bool AddItem(ItemType item, int quantity, out int over)
+    public bool AddItem(ObjectType item, int quantity, out int over)
     {
         if (Count >= _capacity)
         {
@@ -39,14 +39,14 @@ public class Inventory
         return true;
     }
 
-    public bool RemoveItem(ItemType item, int quantity)
+    public bool RemoveItem(ObjectType item, int quantity)
     {
         if (!_content.ContainsKey(item) || _content[item] - quantity <= 0) return false;
         _content[item] -= quantity;
         return true;
     }
 
-    public int GetCountSpecificItem(ItemType type)
+    public int GetCountSpecificItem(ObjectType type)
     {
         return !_content.ContainsKey(type) ? 0 : _content[type];
     }
