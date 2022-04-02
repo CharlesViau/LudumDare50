@@ -25,11 +25,11 @@ public class animationStatePlayer : MonoBehaviour
     {
         // Help us to know if the player is idle or running
         bool isRunning = animator.GetBool(isRunningHash);
-        bool isRunPressed = Input.GetKeyDown(KeyCode.W);
+        bool isRunPressed = Input.GetKey("w");
 
         // Help to know if the player is attacking
         bool isAttacking = animator.GetBool(isAttackingHash);
-        bool attackedPressed = Input.GetKeyDown(KeyCode.Space);
+        bool attackedPressed = Input.GetKey("space");
 
         //Changing the bool if he is or not running
         if (!isRunning && isRunPressed)
