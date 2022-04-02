@@ -1,73 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
-public class Inventory : MonoBehaviour
+
+public class Inventory
 {
-    [SerializeField]
-    public int capacity;
+    private readonly int _capacity;
+    public int Count => content.Sum(couple => couple.Value);
 
-    public Dictionary<Item, int> content;
-    // Start is called before the first frame update
-    void Start()
+    private Dictionary<Item, int> content;
+
+    public Inventory(int capacity)
     {
-        
+        _capacity = capacity;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    int Size()
-    {
-        int size = 0;
-        foreach (KeyValuePair<Item, int> couple in content)
-        {
-            size += couple.Value;
-        }
-        return size;
-    }
-
 
     public void AddItem(Item item, int quantity)
     {
-        int currentSize = Size();
-        if (currentSize + quantity <= capacity)
-        {
-            content[item] += quantity;
-        }
-        else
-        {
-            content[item] += capacity - currentSize;
-        }
+        var currentSize = Count;
+        content[item] += currentSize + quantity <= _capacity ? quantity : _capacity - currentSize;
     }
 
-    public void RemoveItem(Item item, int quantity)
+    public bool RemoveItem(Item item, int quantity)
     {
-        if (IsIn(item)){
-            if (content[item] - quantity <= 0)
-            {
-                content[item] = 0;
-            }
-            else
-            {
-                content[item] -= quantity;
-            }
-        }
-    }
-
-    public bool IsIn(Item item)
-    {
-        bool isin = false;
-        foreach (KeyValuePair<Item, int> couple in content)
-        {
-            if (couple.Value.Equals(item))
-            {
-                isin = true;
-            }
-        }
-        return isin;
+        if (!content.ContainsKey(item) || content[item] - quantity <= 0) return false;
+        content[item] -= quantity;
+        return true;
     }
 }
