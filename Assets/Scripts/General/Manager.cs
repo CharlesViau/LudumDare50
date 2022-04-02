@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -25,6 +24,84 @@ namespace General
     {
         abstract void Add(T obj);
         public abstract void Remove(T obj);
+    }
+
+    public class MonoManager<T> : IManager where T : IUpdatable
+    {
+        private T _obj;
+
+        public MonoManager(T obj)
+        {
+            _obj = obj;
+        }
+
+        public void Init()
+        {
+            _obj.Init();
+        }
+
+        public void PostInit()
+        {
+            _obj.PostInit();
+        }
+
+        public void Refresh()
+        {
+            _obj.Refresh();
+        }
+
+        public void FixedRefresh()
+        {
+            _obj.FixedRefresh();
+        }
+
+        public void Clean()
+        {
+        }
+    }
+
+    public abstract class MonoManager<T, M> : IWrapperManager where T : IUpdatable where M : class, IManager, new()
+    {
+        protected T obj;
+
+        #region Singleton
+
+        private static M instance;
+        public static M Instance => instance ??= new M();
+
+        protected MonoManager()
+        {
+        }
+
+        #endregion
+
+        public virtual void Init()
+        {
+            if (obj == null)
+            {
+                Debug.LogWarning("MonoManager " + typeof(M) + " has been initialize with a null object.");
+            }
+            else obj.Init();
+        }
+
+        public void PostInit()
+        {
+            obj.PostInit();
+        }
+
+        public void Refresh()
+        {
+            obj.Refresh();
+        }
+
+        public void FixedRefresh()
+        {
+            obj.FixedRefresh();
+        }
+
+        public void Clean()
+        {
+        }
     }
 
     /// <summary>
@@ -52,6 +129,7 @@ namespace General
 
         public void Init()
         {
+            AddStackItemsToCollection();
             InitCollection();
         }
 

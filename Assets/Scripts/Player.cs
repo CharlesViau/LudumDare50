@@ -24,4 +24,9 @@ public class Player : MonoBehaviour, IUpdatable, IInteract
     public void Refresh()
     {
     }
+
+    public void Interact()
+    {
+        
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Commands
 {
-    public class Interact : ICommand
+    public class InteractCommand : ICommand
     {
         public void Execute()
         {

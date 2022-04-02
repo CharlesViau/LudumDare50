@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIBehaviour : MonoBehaviour
 {
-    private Text woodCount;
-    private Player player;
+    [SerializeField]public Text woodCount;
+    private Player _player;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
-        woodCount = GetComponent<Text>();
+        _player = GetComponent<Player>();
         woodCount.text = "0";
 
     }
@@ -19,7 +16,11 @@ public class UIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        woodCount.text = (_player.Inventory.GetCountSpecificItem(ItemType.Wood)).ToString();
+    }
 
-        woodCount.text = (player.Inventory.GetItem(ItemType.Wood)).ToString();
+    void OnPickup()
+    {
+        
     }
 }
