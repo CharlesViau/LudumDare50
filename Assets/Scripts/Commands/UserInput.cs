@@ -7,6 +7,7 @@ namespace Commands
     public class UserInput : IUpdatable
     {
         private readonly Player _player;
+        [SerializeField] public int speed;
 
         public UserInput(Player player)
         {
@@ -34,7 +35,18 @@ namespace Commands
 
         public void FixedRefresh()
         {
-            throw new System.NotImplementedException();
+            _player.rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * speed);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.layer == 7)
+            {
+                _player.upStage();
+            }
+            else if (collision.gameObject.layer == 8) {
+            _player.downStage();
+            }
         }
     }
 }
