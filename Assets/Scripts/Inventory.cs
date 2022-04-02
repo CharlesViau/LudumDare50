@@ -26,4 +26,13 @@ public class Inventory
         content[item] -= quantity;
         return true;
     }
+
+    //pour afficher la quantité d'items dans UIBehaviour
+    public int GetItem(ItemType type)
+    {
+        //item = Item(type);
+        //if (!content.ContainsKey(item)) return 0;
+        //return content[item];
+        return 0;
+    }
 }
