@@ -22,7 +22,7 @@ namespace General
     /// <typeparam name="E">Enum of the types of thing it can instantiate</typeparam>
     /// <typeparam name="A">Argument Class for the create method</typeparam>
     public class Factory<T, E, A> : IFactory<T, E, A>
-        where T : ICreatable<A>, IUpdaptable, IPoolable
+        where T : ICreatable<A>, IUpdatable, IPoolable
         where E : Enum
         where A : IArgs
     {
@@ -84,7 +84,7 @@ namespace General
 
     // ReSharper disable once UnusedTypeParameter
     public interface IFactory<out T, in E, in A>
-        where T : ICreatable<A>, IUpdaptable, IPoolable
+        where T : ICreatable<A>, IUpdatable, IPoolable
         where E : Enum
         where A : IArgs
     {

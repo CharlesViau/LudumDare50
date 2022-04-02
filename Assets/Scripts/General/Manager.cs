@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace General
 {
-    public interface IManager : IUpdaptable
+    public interface IManager : IUpdatable
     {
         public abstract void Clean();
     }
@@ -21,7 +21,7 @@ namespace General
     {
     }
 
-    public interface ICollectionManager<in T> where T : Object, IUpdaptable
+    public interface ICollectionManager<in T> where T : IUpdatable
     {
         abstract void Add(T obj);
         public abstract void Remove(T obj);
@@ -31,7 +31,7 @@ namespace General
     /// Manager that can manage any collection of any type of object. can be instantiated with the new operator.
     /// </summary>
     /// <typeparam name="T">Type of  the objects to Manage</typeparam>
-    public class Manager<T> : IManager, ICollectionManager<T> where T : Object, IUpdaptable
+    public class Manager<T> : IManager, ICollectionManager<T> where T : IUpdatable
     {
         #region Variables & Properties
 
@@ -100,7 +100,8 @@ namespace General
         /// If use elsewhere, you could have the same object multiple time
         /// in your collection or some other unintended bug.
         /// </summary>
-        protected void FindAllObjectsOfTypeToCollection()
+        /*
+         protected void FindAllObjectsOfTypeToCollection()
         {
             var hashSet = new HashSet<T>(Object.FindObjectsOfType<T>().ToList());
 
@@ -112,6 +113,7 @@ namespace General
             Debug.LogWarning(
                 "Be sure this 'FindAllObjectsOfTypeToCollection()' is called during an initialization phase or in other optimal condition");
         }
+        */
 
         #endregion
 
@@ -181,7 +183,7 @@ namespace General
     /// <typeparam name="T">Type to Manage</typeparam>
     /// <typeparam name="M">Manager type</typeparam>
     public abstract class Manager<T, M> : IWrapperManager, ICollectionManager<T>
-        where T : Object, IUpdaptable where M : class, IManager, new()
+        where T : IUpdatable where M : class, IManager, new()
     {
         #region Singleton
 
@@ -247,7 +249,7 @@ namespace General
     /// <typeparam name="A">Arguments to provide to the factory</typeparam>
     /// <typeparam name="M">Manager Type</typeparam>
     public abstract class Manager<T, E, A, M> : Manager<T, M>, IFactory<T, E, A>
-        where T : Object, IUpdaptable, ICreatable<A>, IPoolable
+        where T : IUpdatable, ICreatable<A>, IPoolable
         where A : IArgs
         where M : class, IManager, new()
         where E : Enum

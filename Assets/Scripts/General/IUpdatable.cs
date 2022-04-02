@@ -1,7 +1,7 @@
 
   namespace General
   {
-    public interface IUpdaptable 
+    public interface IUpdatable 
     {
       void Init();
       void PostInit();
