@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using General;
 
-public class ItemManager : Manager<Item, ObjectType, Item.ConstructionArgs, ItemManager>
+namespace Managers
 {
-    // Start is called before the first frame update
-    protected override string PrefabLocation => throw new System.NotImplementedException();
+    public class ItemManager : Manager<Item, ObjectType, Item.ConstructionArgs, ItemManager>
+    {
+        protected override string PrefabLocation => "Prefabs/Items";
+    }
 
-    //
-}
-
-public enum ObjectType{
-    Wood,
-    Hole
+    public enum ObjectType{
+        Wood,
+        Hole
+    }
 }

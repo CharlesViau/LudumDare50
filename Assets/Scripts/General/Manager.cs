@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using Object = UnityEngine.Object;
 
 // ReSharper disable VirtualMemberCallInConstructor
 // ReSharper disable InconsistentNaming
@@ -26,7 +24,6 @@ namespace General
         public abstract void Init();
 
         public abstract void PostInit();
-
 
         public abstract void Refresh();
 
@@ -85,9 +82,7 @@ namespace General
         private static M instance;
         public static M Instance => instance ??= new M();
 
-        protected MonoManager()
-        {
-        }
+        protected MonoManager() { }
 
         #endregion
 
@@ -288,7 +283,7 @@ namespace General
         {
             manager = new Manager<T>();
         }
-
+        
         #endregion
 
         #region Variables & Properties

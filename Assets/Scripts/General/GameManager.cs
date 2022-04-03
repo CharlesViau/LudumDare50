@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Managers;
 using UnityEngine;
 
 namespace General
@@ -13,7 +15,10 @@ namespace General
 
         private void Awake()
         {
-            AddManagersToList();
+            _managers.Add(ObjectSpawnerManager.Instance);
+            _managers.Add(PlayerManager.Instance);
+            _managers.Add(ItemManager.Instance);
+            //AddManagersToList();
             InitManagers();
         }
 
@@ -81,13 +86,15 @@ namespace General
             }
         }
 
+        //TODO DEBUG THAT SHIT
         private void AddManagersToList()
         {
             foreach (var type in
                      Assembly.GetAssembly(typeof(Manager)).GetTypes().Where(myType =>
                          myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Manager))))
             {
-                _managers.Add((Manager) type.GetProperty("Instance")?.GetValue(type));
+                _managers.Add((Manager)type.GetRuntimeProperty("Instance").GetValue(type));
+                
             }
         }
 
