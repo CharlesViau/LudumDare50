@@ -53,7 +53,7 @@ public class ObjectSpawner : MonoBehaviour
         } while (_presences[randomPosition]);
        
         
-        if (woodChance >= relativeWoodProbability && BarrelCounter <=maxBarrels)
+        if (woodChance <= relativeWoodProbability && BarrelCounter <=maxBarrels)
         {
             Instantiate(baril, _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
