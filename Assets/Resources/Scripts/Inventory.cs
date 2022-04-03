@@ -48,7 +48,7 @@ public class Inventory
 
     public bool RemoveItem(ItemType item, int quantity)
     {
-        if (!_content.ContainsKey(item) || _content[item] - quantity <= 0) return false;
+        if (!_content.ContainsKey(item) || _content[item] - quantity < 0) return false;
         _content[item] -= quantity;
         return true;
     }
