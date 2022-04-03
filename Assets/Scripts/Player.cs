@@ -1,24 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Commands;
 using UnityEngine;
 using General;
 
-public class Player : MonoBehaviour, IInteract
+public class Player : MonoBehaviour, IInteract, IMove
 {
     public Inventory Inventory { get; set; }
+    private UserInput _input;
     [SerializeField] private int inventoryCapacity;
-    //ajouté par Nath
+  
     public Rigidbody rb;
-    //le premier étage correspond à currentStage = 0;
-    public int currentStage = 1;
-    //liste contenant les positions des 4 empty "PlayerSpawn"; il faudrait l'initialiser dans Init(); Respawn() utilise cette liste pour modifier la position du joueur lors des changements d'étage
-    private List<Vector3> spawnTransforms;
+    [SerializeField]private const float Speed = 5;
 
-    private string staircaseUsed = "up";
-
-    public void Awake()
+    private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
+        
         Inventory = new Inventory(inventoryCapacity);
+        _input = new UserInput(this);
+        
+        _input.Init();
+    }
+
+    private void Start()
+    {
+        _input.PostInit();
+    }
+
+    private void Update()
+    {
+        _input.Refresh();
+    }
+
+    private void FixedUpdate()
+    {
+        _input.FixedRefresh();
     }
 
     public void Interact()
@@ -26,32 +44,10 @@ public class Player : MonoBehaviour, IInteract
         
     }
 
-    public void upStage()
+    public void Move(Vector3 move)
     {
-        if (currentStage <= 1)
-        {
-            currentStage += 1;
-            staircaseUsed = "up";
-            Respawn();
-        }
-        //faire monter d'étage; pas de else, on est juste con si la fonction est mal utilisée
-    }
-    
-    public void downStage()
-    {
-        if (currentStage >= 1)
-        {
-            currentStage -= 1;
-            staircaseUsed = "down";
-            Respawn();
-        }
-        //faire descendre d'étage; pas vraiment besoin de else ici non plus je crois
+        rb.AddForce(move * Speed);
     }
 
-    public void Respawn()
-    {
-
-
-        //faire réapparaître le joueur à l'étage correspondant à currentStage et à l'escalier correspondant à staircaseUsed
-    }
+   
 }

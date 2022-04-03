@@ -6,14 +6,15 @@ namespace Commands
     public class UserInput : IUpdatable
     {
         private readonly Player _player;
-        [SerializeField] public int speed;
 
         public UserInput(Player player)
         {
-            this._player = player;
+            _player = player;
         }
 
         private const string Interact = "Fire1";
+        private const string Vertical = "Vertical";
+        private const string Horizontal = "Horizontal";
 
         public void Init()
         {
@@ -34,17 +35,10 @@ namespace Commands
 
         public void FixedRefresh()
         {
-            _player.rb.AddForce(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * speed);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.layer == 7)
+            if (new Vector3(Input.GetAxis(Horizontal), 0, Input.GetAxis(Vertical)) is var v3 && v3 != Vector3.zero)
             {
-                _player.upStage();
-            }
-            else if (collision.gameObject.layer == 8) {
-            _player.downStage();
+                ICommand storedCommand = new MoveCommand(_player, v3);
+                storedCommand.Execute();
             }
         }
     }

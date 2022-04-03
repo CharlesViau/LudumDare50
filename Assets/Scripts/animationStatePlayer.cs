@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animationStatePlayer : MonoBehaviour
+public class animationStatePlayer : IUpdatable
 {
     //Variables
     Animator animator;
@@ -10,7 +10,7 @@ public class animationStatePlayer : MonoBehaviour
     int isAttackingHash;
 
     // Start is called before the first frame update
-    void Start()
+    void Init()
     {
         //Get the type animator in our scene
         animator = GetComponent<Animator>();
@@ -21,7 +21,7 @@ public class animationStatePlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void PostInit()
     {
         // Help us to know if the player is idle or running
         bool isRunning = animator.GetBool(isRunningHash);
