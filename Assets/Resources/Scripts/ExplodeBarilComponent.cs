@@ -7,8 +7,9 @@ public class ExplodeBarilComponent : Item
 
     public override void Interact(IInteract person)
     {
-        if (person.Inventory.AddItem(Type, 1, out var over))
+        if (person.Inventory.AddItem(ObjectType.Wood, 1, out var over))
         {
+            UIBehaviour.staticWoodCount += 1;
             Destroy();
         }
     }
@@ -23,7 +24,7 @@ public class ExplodeBarilComponent : Item
     private void Destroy()
     {
         Instantiate(woodParticles, transform.position, Quaternion.identity);
-        GameObject.Destroy(this);
+        Destroy(gameObject);
         
     }
 
