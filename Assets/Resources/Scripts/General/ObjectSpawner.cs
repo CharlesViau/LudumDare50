@@ -16,14 +16,13 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] public float timeMod = 1.001f;
     private float _timeCounter;
 
-    private static float _timeThreshold = 3;
+    private static float _timeThreshold = 2;
 
     //relative wood probability is the probability to get wood over hole /1000
     [SerializeField] public int relativeWoodProbability = 400;
     [SerializeField] public GameObject baril;
     [SerializeField] public GameObject hole;
     [SerializeField] public int maxBarrels = 7;
-    [SerializeField] public int maxHoles = 10;
 
 
     public void Awake()
@@ -46,7 +45,14 @@ public class ObjectSpawner : MonoBehaviour
 
     private void GenerateItem()
     {
-        if (_trueCount == 75) return;
+        if (_trueCount == 75)
+        {
+            for (var i = 0; i < _presences.Count; i++)
+            {
+                _presences[i] = false;
+            }
+        }
+        
         var woodChance = Random.Range(0, 1000);
         int randomPosition;
         
@@ -56,14 +62,14 @@ public class ObjectSpawner : MonoBehaviour
         } while (_presences[randomPosition]);
        
         
-        if (woodChance <= relativeWoodProbability && BarrelCounter <=maxBarrels)
+        if (woodChance <= relativeWoodProbability && BarrelCounter < maxBarrels)
         {
             Instantiate(baril, _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
             _trueCount += 1;
         }
         
-        else if(HoleCounter <= maxHoles)
+        else 
         {
             Instantiate(hole,  _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
