@@ -14,4 +14,9 @@ public class Wood : Item
     }
     // Update is called once per frame
 
+    public void Update()
+    {
+        //afficher asset
+    }
+
 }

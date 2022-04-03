@@ -7,6 +7,8 @@ public class ExplodeBarilComponent : MonoBehaviour
     [Header("Unity Setup")]
     public ParticleSystem woodParticles;
 
+    [SerializeField] public GameObject wood;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -16,6 +18,11 @@ public class ExplodeBarilComponent : MonoBehaviour
     public void Destroy()
     {
         Instantiate(woodParticles, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Instantiate(wood);
+        GameObject.Destroy(this);
+        
+        
+
+
     }
 }
