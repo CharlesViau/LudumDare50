@@ -17,7 +17,7 @@ public class UIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //woodCount.text = (_player.Inventory.GetCountSpecificItem(ObjectType.Wood)).ToString();
+        woodCount.text = (_player.Inventory.GetCountSpecificItem(ObjectType.Wood)).ToString();
     }
 
     void OnPickup()
