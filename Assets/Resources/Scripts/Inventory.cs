@@ -8,7 +8,7 @@ public class Inventory
     private readonly int _capacity;
     public int Count => _content.Sum(couple => couple.Value);
 
-    private Dictionary<string, int> _content;
+    public Dictionary<string, int> _content;
 
     public Inventory(int capacity)
     {
@@ -28,7 +28,6 @@ public class Inventory
         if (!_content.ContainsKey(item))
         {
             _content.Add(item, 0);
-            Debug.Log(_content[item]);
         }
 
         if (Count + quantity <= _capacity)

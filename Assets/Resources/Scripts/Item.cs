@@ -26,7 +26,8 @@ public abstract class Item : MonoBehaviour, IInteractable
     {
         unchecked
         {
-            return (base.GetHashCode() * 397) ^ (int) Type;
+            //return (base.GetHashCode() * 397) ^ (int) Type;
+            return 0;
         }
     }
 
