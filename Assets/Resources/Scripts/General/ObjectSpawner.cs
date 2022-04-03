@@ -66,7 +66,7 @@ public class ObjectSpawner : MonoBehaviour
                     tuple.present = true;
                     break;
                 }
-                
+
             }
         }
         else
@@ -89,7 +89,7 @@ public class ObjectSpawner : MonoBehaviour
 
 
 
-        
+
 
     }
 }

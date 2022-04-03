@@ -9,14 +9,22 @@ public class Wood : Item
     {
         if (person.Inventory.AddItem(this.Type, 1, out var over))
         {
-            //TODO delete game object or some other shinanigan.
+            GameObject.Destroy(this);
         }
     }
     // Update is called once per frame
 
     public void Update()
     {
-        //afficher asset
+        
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            Interact(collision.gameObject.GetComponent<Player>());
+        }
     }
 
 }
