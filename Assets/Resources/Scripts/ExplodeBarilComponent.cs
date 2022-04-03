@@ -9,7 +9,7 @@ public class ExplodeBarilComponent : Item
 
     public override void Interact(IInteract person)
     {
-        if (person.Inventory.AddItem(this.Type, 1, out var over))
+        if (person.Inventory.AddItem(Type, 1, out var over))
         {
             Destroy();
         }
@@ -17,31 +17,26 @@ public class ExplodeBarilComponent : Item
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Player"))
-        {
-            Interact(collision.gameObject.GetComponent<Player>());
-            Destroy();
-        }
+        if (!collision.collider.CompareTag("Player")) return;
+        Interact(collision.gameObject.GetComponent<Player>());
+        Destroy();
     }
 
-    public void Destroy()
+    private void Destroy()
     {
         Instantiate(woodParticles, transform.position, Quaternion.identity);
         GameObject.Destroy(this);
         
-        
-
-
     }
 
     public void Awake()
     {
-        ObjectSpawner.barrelCounter += 1;
+        ObjectSpawner.BarrelCounter += 1;
 
     }
 
     public void OnDestroy()
     {
-        ObjectSpawner.barrelCounter -= 1;
+        ObjectSpawner.BarrelCounter -= 1;
     }
 }

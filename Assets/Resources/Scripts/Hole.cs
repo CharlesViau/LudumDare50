@@ -1,27 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hole : Item
 {
-    [SerializeField] int timePerHole = 3;
+    [SerializeField] private int timePerHole = 3;
     public override void Interact(IInteract person)
     {
-        bool possible = person.Inventory.RemoveItem(ObjectType.Wood, 1);
-        if (possible)
-        {
-            ObjectSpawner.holeCounter -= 1;
-            //make something pop up when time is added?
-            TimeManager.currentTime += timePerHole;
-            GameObject.Destroy(this);
-        }
+        var possible = person.Inventory.RemoveItem(ObjectType.Wood, 1);
+        if (!possible) return;
+        ObjectSpawner.HoleCounter -= 1;
+      
+        TimeManager.currentTime += timePerHole;
+        Destroy(this);
 
     }
-
-    public void Update()
-    {
-        //afficher l'asset
-    }
+    
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -32,7 +24,7 @@ public class Hole : Item
 
     public void Awake()
     {
-        ObjectSpawner.holeCounter += 1;
+        ObjectSpawner.HoleCounter += 1;
     }
 
 
