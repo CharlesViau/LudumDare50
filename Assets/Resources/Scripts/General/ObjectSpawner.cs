@@ -54,6 +54,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void GenerateItem()
     {
+        Debug.Log("Generation tried");
         int value = Random.Range(0, 1000);
         if (value >= relativeWoodProbability)
         {

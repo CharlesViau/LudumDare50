@@ -49,7 +49,7 @@ public class Player : MonoBehaviour, IInteract, IMove
             direction.magnitude >= 0.1f)
         {
             Move(direction);
-            Debug.Log(animator.GetFloat(_speedHash));
+            //Debug.Log(animator.GetFloat(_speedHash));
         }
         
         animator.SetFloat(_speedHash, direction.normalized.magnitude/speed);
