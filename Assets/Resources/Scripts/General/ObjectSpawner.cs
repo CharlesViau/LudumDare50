@@ -6,7 +6,8 @@ using General;
 public class ObjectSpawner : MonoBehaviour
 {
     //vector3 representing the object's position and boolean representing if an object is already there
-    private List<(Transform position, bool present)> spawningPositions;
+    private List<Transform> spawningPositions;
+    private List<bool> present;
     static public int barrelCounter;
     public static int holeCounter;
 
@@ -25,13 +26,14 @@ public class ObjectSpawner : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            foreach (Transform subchild in child.transform)
-            {
-                spawningPositions.Add((subchild, false));
-                //remove later
-                Debug.Log(spawningPositions);
-            }
+            
+            spawningPositions.Add((child, false));
+
+                
+            
         }
+        //remove
+        Debug.Log(spawningPositions);
     }
 
 
