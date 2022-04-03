@@ -6,10 +6,12 @@ namespace Commands
     public class UserInput : IUpdatable
     {
         private readonly Player _player;
+        //public CommandManager CommandManager;
 
         public UserInput(Player player)
         {
             _player = player;
+            //CommandManager = new CommandManager();
         }
 
         private const string Interact = "Fire1";
@@ -18,19 +20,25 @@ namespace Commands
 
         public void Init()
         {
+            //CommandManager.Init();
         }
 
         public void PostInit()
         {
+            //CommandManager.PostInit();
         }
 
         public void Refresh()
         {
-            if (Input.GetKeyDown(Interact))
+            if (Input.GetButtonDown(Interact))
             {
                 ICommand storedCommand = new InteractCommand(_player);
                 storedCommand.Execute();
+                //CommandManager.Add(storedCommand);
+
             }
+            
+            //CommandManager.Refresh();
         }
 
         public void FixedRefresh()
@@ -39,7 +47,15 @@ namespace Commands
             {
                 ICommand storedCommand = new MoveCommand(_player, v3);
                 storedCommand.Execute();
+                //CommandManager.Add(storedCommand);
             }
+            
+            //CommandManager.FixedRefresh();
+        }
+
+        public void LateRefresh()
+        {
+           //CommandManager.LateRefresh(); 
         }
     }
 }

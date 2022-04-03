@@ -28,6 +28,10 @@ namespace General
         public abstract void Refresh();
 
         public abstract void FixedRefresh();
+        public void LateRefresh()
+        {
+            
+        }
 
         public abstract void Clean();
     }
@@ -65,6 +69,11 @@ namespace General
         public void FixedRefresh()
         {
             _obj.FixedRefresh();
+        }
+
+        public void LateRefresh()
+        {
+            
         }
 
         public void Clean()
@@ -159,6 +168,11 @@ namespace General
         public void FixedRefresh()
         {
             FixedUpdateCollection();
+        }
+
+        public void LateRefresh()
+        {
+            
         }
 
         public void Add(T item)

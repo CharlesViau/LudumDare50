@@ -1,48 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using General;
 
-public class animationStatePlayer : IUpdatable
+public class AnimationStatePlayer : IUpdatable
 {
     //Variables
-    Animator animator;
-    int isRunningHash;
-    int isAttackingHash;
+    private readonly Animator _animator;
+    private readonly Rigidbody _rb;
+    private readonly float _maxSpeed;
+    private int _speedHash;
 
-    // Start is called before the first frame update
-    void Init()
+    public AnimationStatePlayer(Player player)
     {
-        //Get the type animator in our scene
-        animator = GetComponent<Animator>();
-
-        //Get the variable in the animator
-        isRunningHash = Animator.StringToHash("isRunning");
-        isAttackingHash = Animator.StringToHash("isAttacking");
+        _rb = player.rb;
+        _animator = player.animator;
+        _maxSpeed = player.speed;
+    }
+    
+    // Start is called before the first frame update
+    public void Init()
+    {
+        _speedHash = Animator.StringToHash("isRunning");
     }
 
     // Update is called once per frame
-    void PostInit()
+    public void PostInit()
     {
-        // Help us to know if the player is idle or running
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isRunPressed = Input.GetKey("w");
+        
+    }
 
-        // Help to know if the player is attacking
-        bool isAttacking = animator.GetBool(isAttackingHash);
-        bool attackedPressed = Input.GetKey("space");
+    public void Refresh()
+    {
+        _animator.SetFloat(_speedHash, (_rb.velocity.magnitude/_maxSpeed));
+    }
 
-        //Changing the bool if he is or not running
-        if (!isRunning && isRunPressed)
-            animator.SetBool(isRunningHash, true);
+    public void FixedRefresh()
+    {
+        
+    }
 
-        if (isRunning && !isRunPressed)
-            animator.SetBool(isRunningHash, false);
-
-        //Changing the bool if he is attacking and running
-        if (!isAttacking && (isRunPressed && attackedPressed))
-            animator.SetBool(isAttackingHash, true);
-
-        if (isAttacking && (!isRunPressed || !attackedPressed))
-            animator.SetBool(isAttackingHash, false);
+    public void LateRefresh()
+    {
+        
     }
 }

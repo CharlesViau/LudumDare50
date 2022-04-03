@@ -9,24 +9,28 @@ public class Player : MonoBehaviour, IInteract, IMove
 {
     public Inventory Inventory { get; set; }
     private UserInput _input;
+    private AnimationStatePlayer _animationStatePlayer;
     [SerializeField] private int inventoryCapacity;
   
     public Rigidbody rb;
-    [SerializeField]private const float Speed = 5;
+    public Animator animator;
+    
+    [SerializeField]public float speed = 5;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        
         Inventory = new Inventory(inventoryCapacity);
         _input = new UserInput(this);
+        _animationStatePlayer = new AnimationStatePlayer(this);
         
         _input.Init();
+        _animationStatePlayer.Init();
     }
 
     private void Start()
     {
         _input.PostInit();
+        _animationStatePlayer.PostInit();
     }
 
     private void Update()
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour, IInteract, IMove
 
     public void Move(Vector3 move)
     {
-        rb.AddForce(move * Speed);
+        rb.AddForce(move * speed);
     }
 
    

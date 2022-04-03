@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using General;
 
-public class ObjectSpawner : MonoBehaviour, IUpdatable
+public class ObjectSpawner : MonoBehaviour
 {
     private HashSet<Vector3> spawningPositions;
     public void FixedRefresh()
