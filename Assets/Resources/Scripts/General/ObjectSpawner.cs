@@ -6,12 +6,12 @@ using General;
 public class ObjectSpawner : MonoBehaviour
 {
     //vector3 representing the object's position and boolean representing if an object is already there
-    private List<Transform> spawningPositions;
-    private List<bool> present;
+    private List<Transform> spawningPositions = new List<Transform>();
+    private List<bool> presences = new List<bool>();
     static public int barrelCounter;
     public static int holeCounter;
 
-    [SerializeField] public float timeMod = 1.2f;
+    [SerializeField] public float timeMod = 1.001f;
     private float timeCounter = 0f;
     private float timeTreshold = 3;
     //relative wood probability is the probability to get wood over hole /1000
@@ -24,16 +24,13 @@ public class ObjectSpawner : MonoBehaviour
 
     public void Awake()
     {
-        foreach (Transform child in transform)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            
-            spawningPositions.Add((child, false));
-
-                
-            
+            spawningPositions.Add(transform.GetChild(i));
+            presences.Add(false);
         }
-        //remove
-        Debug.Log(spawningPositions);
+        
+
     }
 
 
@@ -69,12 +66,13 @@ public class ObjectSpawner : MonoBehaviour
             {
                 int random = Random.Range(0, spawningPositions.Count - 1);
                 //generating wood
-                (Transform position, bool present) tuple = spawningPositions[random];
-                if (!tuple.present)
+                Transform position = spawningPositions[random];
+                bool present = presences[random];
+                if (!present)
                 {
-                    Instantiate(baril, tuple.position);
+                    Instantiate(baril, position);
                     //prend pour acquis que la copie lors de tuple est seulement de surface
-                    tuple.present = true;
+                    presences[random] = true;
                     break;
                 }
 
@@ -90,12 +88,13 @@ public class ObjectSpawner : MonoBehaviour
             {
                 int random = Random.Range(0, spawningPositions.Count - 1);
                 //generating a hole
-                (Transform position, bool present) tuple = spawningPositions[random];
-                if (!tuple.present)
+                Transform position = spawningPositions[random];
+                bool present = presences[random];
+                if (!present)
                 {
-                    Instantiate(hole, tuple.position);
+                    Instantiate(baril, position);
                     //prend pour acquis que la copie lors de tuple est seulement de surface
-                    tuple.present = true;
+                    presences[random] = true;
                     break;
                 }
 
