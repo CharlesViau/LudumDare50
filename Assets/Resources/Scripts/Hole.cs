@@ -6,7 +6,7 @@ public class Hole : Item
     
     public override void Interact(IInteract person)
     {
-        if (!person.Inventory.RemoveItem(ItemType.Wood, 1)) return;
+        if (!person.Inventory.RemoveItem(ItemType.Wood, 0)) return;
         UIBehaviour.staticWoodCount -= 1;
         ObjectSpawner.HoleCounter -= 1;
         TimeManager._remainingTime += timePerHole;

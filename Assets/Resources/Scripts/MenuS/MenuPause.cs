@@ -44,6 +44,6 @@ public class MenuPause : MonoBehaviour
     // Fonction qui permet de quitter la partie
     public void QuitterPartie()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
