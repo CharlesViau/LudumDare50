@@ -5,7 +5,8 @@ public class Hole : Item
     [SerializeField] private int timePerHole = 3;
     public override void Interact(IInteract person)
     {
-        var possible = person.Inventory.RemoveItem(ObjectType.Wood, 1);
+        var possible = person.Inventory.RemoveItem("Wood", 1);
+        Debug.Log(person.Inventory["Wood"]);
         Debug.Log(possible);
         if (!possible) return;
         UIBehaviour.staticWoodCount -= 1;

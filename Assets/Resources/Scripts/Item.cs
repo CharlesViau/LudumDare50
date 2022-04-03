@@ -1,13 +1,9 @@
 using UnityEngine;
 
-public enum ObjectType{
-    Wood, 
-    Hole
-}
 
 public abstract class Item : MonoBehaviour, IInteractable
 {
-    [SerializeField]public readonly ObjectType Type; 
+    [SerializeField]public readonly string Type; 
 
     public static bool operator ==(Item a, Item b)
     {
