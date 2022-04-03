@@ -1403,6 +1403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798321150aca6414598df06479053e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeMod: 1.2
+  relativeWoodProbability: 200
+  baril: {fileID: 0}
+  hole: {fileID: 0}
 --- !u!1001 &474304289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5775,7 +5779,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7026230614595205696, guid: 217caa0f5e94ee441b76d72d7489067a, type: 3}
       propertyPath: m_Name
-      value: Baril
+      value: BarilSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 7113940400428454306, guid: 217caa0f5e94ee441b76d72d7489067a, type: 3}
       propertyPath: m_LocalPosition.y
