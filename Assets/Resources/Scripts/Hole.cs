@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Hole : Item
 {
+    [SerializeField] int timePerHole = 3;
     public override void Interact(IInteract person)
     {
         bool possible = person.Inventory.RemoveItem(ObjectType.Wood, 1);
         if (possible)
         {
             ObjectSpawner.holeCounter -= 1;
+            //make something pop up when time is added?
+            TimeManager.currentTime += timePerHole;
             GameObject.Destroy(this);
         }
 
@@ -25,6 +28,11 @@ public class Hole : Item
         {
             Interact(collision.gameObject.GetComponent<Player>());
         }
+    }
+
+    public void Awake()
+    {
+        ObjectSpawner.holeCounter += 1;
     }
 
 

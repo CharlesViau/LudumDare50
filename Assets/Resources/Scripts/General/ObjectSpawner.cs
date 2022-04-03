@@ -7,16 +7,19 @@ public class ObjectSpawner : MonoBehaviour
 {
     //vector3 representing the object's position and boolean representing if an object is already there
     private List<(Transform position, bool present)> spawningPositions;
-    static int woodCounter;
+    static public int barrelCounter;
     public static int holeCounter;
 
     [SerializeField] public float timeMod = 1.2f;
     private float timeCounter = 0f;
     private float timeTreshold = 10;
     //relative wood probability is the probability to get wood over hole /1000
-    [SerializeField] public int relativeWoodProbability = 200;
+    [SerializeField] public int relativeWoodProbability = 400;
     [SerializeField] public GameObject baril;
     [SerializeField] public GameObject hole;
+    [SerializeField] public int maxBarrels = 7;
+    [SerializeField] public int maxHoles = 10;
+
     public void Awake()
     {
         foreach (Transform child in transform)
@@ -54,6 +57,10 @@ public class ObjectSpawner : MonoBehaviour
         int value = Random.Range(0, 1000);
         if (value >= relativeWoodProbability)
         {
+            if (barrelCounter >= maxBarrels)
+            {
+                return;
+            }
             while (true)
             {
                 int random = Random.Range(0, spawningPositions.Count - 1);
@@ -71,10 +78,14 @@ public class ObjectSpawner : MonoBehaviour
         }
         else
         {
+            if (holeCounter >= maxHoles)
+            {
+                return;
+            }
             while (true)
             {
                 int random = Random.Range(0, spawningPositions.Count - 1);
-                //generating wood
+                //generating a hole
                 (Transform position, bool present) tuple = spawningPositions[random];
                 if (!tuple.present)
                 {

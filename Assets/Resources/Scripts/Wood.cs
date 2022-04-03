@@ -27,4 +27,15 @@ public class Wood : Item
         }
     }
 
+    public void Awake()
+    {
+        ObjectSpawner.barrelCounter += 1;
+        
+    }
+
+    public void OnDestroy()
+    {
+        ObjectSpawner.barrelCounter -= 1;
+    }
+
 }
