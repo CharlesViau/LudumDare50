@@ -6,14 +6,17 @@ public class Hole : Item
     public override void Interact(IInteract person)
     {
         var possible = person.Inventory.RemoveItem(ObjectType.Wood, 1);
+        Debug.Log(possible);
         if (!possible) return;
+        UIBehaviour.staticWoodCount -= 1;
         ObjectSpawner.HoleCounter -= 1;
-      
+
         TimeManager._remainingTime += timePerHole;
         Destroy(this);
+        
 
     }
-    
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

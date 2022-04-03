@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIBehaviour : MonoBehaviour
 {
-    [SerializeField]
+    public static int staticWoodCount = 0;
     public Text woodCount;
     [SerializeField] public Player _player;
     // Start is called before the first frame update
@@ -14,14 +14,16 @@ public class UIBehaviour : MonoBehaviour
 
     }
 
+    public void Awake()
+    {
+        woodCount = GetComponent<Text>();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        woodCount.text = (_player.Inventory.GetCountSpecificItem(ObjectType.Wood)).ToString();
+        woodCount.text = staticWoodCount.ToString();
     }
 
-    void OnPickup()
-    {
-        
-    }
 }
