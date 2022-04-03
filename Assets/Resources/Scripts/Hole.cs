@@ -19,7 +19,13 @@ public class Hole : Item
     {
         //afficher l'asset
     }
-
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            Interact(collision.gameObject.GetComponent<Player>());
+        }
+    }
 
 
     // Start is called before the first frame update
