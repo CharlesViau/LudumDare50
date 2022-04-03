@@ -844,15 +844,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6361194638358324650, guid: a0cb53db23f90c649982eb1a29d75678, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.42678612
+      value: 0.4267861
       objectReference: {fileID: 0}
     - target: {fileID: 6361194638358324650, guid: a0cb53db23f90c649982eb1a29d75678, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000028961603
+      value: 0.000000010600686
       objectReference: {fileID: 0}
     - target: {fileID: 6361194638358324650, guid: a0cb53db23f90c649982eb1a29d75678, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000001366769
+      value: -0.000000005002723
       objectReference: {fileID: 0}
     - target: {fileID: 6361194638358324650, guid: a0cb53db23f90c649982eb1a29d75678, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1074,7 +1074,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232159921}
-  m_LocalRotation: {x: 0.42678612, y: -0.000000028961603, z: 0.00000001366769, w: 0.9043526}
+  m_LocalRotation: {x: 0.4267861, y: 0.000000010600686, z: -0.000000005002723, w: 0.9043526}
   m_LocalPosition: {x: 14.026695, y: 7.6, z: -41.472}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1548,7 +1548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &465618823
 Transform:
   m_ObjectHideFlags: 0
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465618822}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798321150aca6414598df06479053e6f, type: 3}
   m_Name: 
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   timeMod: 1.2
   relativeWoodProbability: 200
   baril: {fileID: 7026230614595205696, guid: 217caa0f5e94ee441b76d72d7489067a, type: 3}
-  hole: {fileID: 0}
+  hole: {fileID: 2912721389131306807, guid: 884dfafa85cad534a9d26bf5263799b7, type: 3}
   maxBarrels: 7
   maxHoles: 10
 --- !u!1001 &474304289

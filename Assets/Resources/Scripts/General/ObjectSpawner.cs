@@ -12,13 +12,14 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] public float timeMod = 1.2f;
     private float timeCounter = 0f;
-    private float timeTreshold = 10;
+    private float timeTreshold = 3;
     //relative wood probability is the probability to get wood over hole /1000
     [SerializeField] public int relativeWoodProbability = 400;
     [SerializeField] public GameObject baril;
     [SerializeField] public GameObject hole;
     [SerializeField] public int maxBarrels = 7;
     [SerializeField] public int maxHoles = 10;
+    
 
     public void Awake()
     {
