@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    private int _trueCount = 0;
     //vector3 representing the object's position and boolean representing if an object is already there
     private readonly List<Transform> _spawningPositions = new List<Transform>();
     private readonly List<bool> _presences = new List<bool>();
     public static int BarrelCounter;
     public static int HoleCounter;
+    
+    
 
     [SerializeField] public float timeMod = 1.001f;
     private float _timeCounter;
@@ -43,10 +46,10 @@ public class ObjectSpawner : MonoBehaviour
 
     private void GenerateItem()
     {
-        Debug.Log("Generation tried");
+        if (_trueCount == 75) return;
         var woodChance = Random.Range(0, 1000);
-
         int randomPosition;
+        
         do
         {
             randomPosition = Random.Range(0, _spawningPositions.Count - 1);
@@ -57,12 +60,14 @@ public class ObjectSpawner : MonoBehaviour
         {
             Instantiate(baril, _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
+            _trueCount += 1;
         }
         
         else if(HoleCounter <= maxHoles)
         {
             Instantiate(hole,  _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
+            _trueCount += 1;
         }
         
     }

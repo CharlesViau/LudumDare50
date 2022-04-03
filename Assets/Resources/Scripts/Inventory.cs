@@ -7,11 +7,12 @@ public class Inventory
     private readonly int _capacity;
     public int Count => _content.Sum(couple => couple.Value);
 
-    private Dictionary<ObjectType, int> _content;
+    private readonly Dictionary<ObjectType, int> _content;
 
     public Inventory(int capacity)
     {
         _capacity = capacity;
+        _content = new Dictionary<ObjectType, int>();
     }
 
     public bool AddItem(ObjectType item, int quantity, out int over)

@@ -14,11 +14,11 @@ public class Hole : Item
 
     }
     
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Interact(collision.gameObject.GetComponent<Player>());
+            Interact(other.gameObject.GetComponent<Player>());
         }
     }
 
