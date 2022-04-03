@@ -9,7 +9,7 @@ public class Hole : Item
         if (!possible) return;
         ObjectSpawner.HoleCounter -= 1;
       
-        TimeManager.currentTime += timePerHole;
+        TimeManager.CurrentTime += timePerHole;
         Destroy(this);
 
     }
