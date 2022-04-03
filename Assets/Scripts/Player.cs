@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using General;
 
-public class Player : MonoBehaviour, IUpdatable, IInteract
+public class Player : MonoBehaviour, IInteract
 {
     public Inventory Inventory { get; set; }
     [SerializeField] private int inventoryCapacity;
@@ -16,21 +16,9 @@ public class Player : MonoBehaviour, IUpdatable, IInteract
 
     private string staircaseUsed = "up";
 
-    public void FixedRefresh()
-    {
-    }
-
-    public void Init()
+    public void Awake()
     {
         Inventory = new Inventory(inventoryCapacity);
-    }
-
-    public void PostInit()
-    {
-    }
-
-    public void Refresh()
-    {
     }
 
     public void Interact()

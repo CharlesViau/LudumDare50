@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Managers;
 using UnityEngine;
 
 namespace General
@@ -15,9 +14,6 @@ namespace General
 
         private void Awake()
         {
-            _managers.Add(ObjectSpawnerManager.Instance);
-            _managers.Add(PlayerManager.Instance);
-            _managers.Add(ItemManager.Instance);
             //AddManagersToList();
             InitManagers();
         }
