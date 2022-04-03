@@ -7,11 +7,9 @@ public class ExplodeBarilComponent : Item
 
     public override void Interact(IInteract person)
     {
-        if (person.Inventory.AddItem("Wood", 1, out var over))
-        {
-            UIBehaviour.staticWoodCount += 1;
-            Destroy();
-        }
+        if (!person.Inventory.AddItem(ItemType.Wood, 1, out var over)) return;
+        UIBehaviour.staticWoodCount += 1;
+        Destroy();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,7 +29,6 @@ public class ExplodeBarilComponent : Item
     public void Awake()
     {
         ObjectSpawner.BarrelCounter += 1;
-
     }
 
     public void OnDestroy()

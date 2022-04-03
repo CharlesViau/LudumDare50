@@ -3,16 +3,16 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour, IInteractable
 {
-    [SerializeField]public readonly string Type; 
+    [SerializeField] private ItemType itemType; 
 
     public static bool operator ==(Item a, Item b)
     {
-        return b != null && a != null && a.Type == b.Type;
+        return b != null && a != null && a.itemType == b.itemType;
     }
 
     public static bool operator !=(Item a, Item b)
     {
-        return b != null && a != null && a.Type != b.Type;
+        return b != null && a != null && a.itemType != b.itemType;
     }
 
     public override bool Equals(object obj)
@@ -35,3 +35,8 @@ public abstract class Item : MonoBehaviour, IInteractable
     
 }
 
+public enum ItemType
+{
+    Wood,
+    Hole
+}

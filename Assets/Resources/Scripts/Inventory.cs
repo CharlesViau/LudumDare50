@@ -6,18 +6,19 @@ using UnityEngine;
 public class Inventory
 {
     private readonly int _capacity;
-    public int Count => _content.Sum(couple => couple.Value);
+    private int Count => _content.Sum(couple => couple.Value);
 
-    public Dictionary<string, int> _content;
+    private readonly Dictionary<ItemType, int> _content;
 
     public Inventory(int capacity)
     {
         _capacity = capacity;
-        _content = new Dictionary<string, int>();
+        _content = new Dictionary<ItemType, int>();
     }
 
-    public bool AddItem(string item, int quantity, out int over)
+    public bool AddItem(ItemType item, int quantity, out int over)
     {
+        Debug.Log("Attempt to add");
         Debug.Log(Count);
         if (Count >= _capacity)
         {
@@ -27,6 +28,7 @@ public class Inventory
         
         if (!_content.ContainsKey(item))
         {
+            Debug.Log("Create Key " + item);
             _content.Add(item, 0);
         }
 
@@ -34,6 +36,7 @@ public class Inventory
         {
             
             _content[item] += quantity;
+            Debug.Log(_content[item]);
             over = 0;
             return true;
         }
@@ -43,17 +46,15 @@ public class Inventory
         return true;
     }
 
-    public bool RemoveItem(string item, int quantity)
+    public bool RemoveItem(ItemType item, int quantity)
     {
         if (!_content.ContainsKey(item) || _content[item] - quantity <= 0) return false;
         _content[item] -= quantity;
         return true;
     }
 
-    public int GetCountSpecificItem(string type)
+    public int GetCountSpecificItem(ItemType type)
     {
-        if (!_content.ContainsKey(type))
-            return 0;
-        return _content[type];
+        return !_content.ContainsKey(type) ? 0 : _content[type];
     }
 }

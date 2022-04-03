@@ -8,7 +8,7 @@ using General;
 public class Player : MonoBehaviour, IInteract, IMove
 {
     public Inventory Inventory { get; set; }
-    [SerializeField] private int inventoryCapacity;
+    private const int InventoryCapacity = 5;
     private Transform _transform1;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IInteract, IMove
 
     private void Awake()
     {
-        Inventory = new Inventory(inventoryCapacity);
+        Inventory = new Inventory(InventoryCapacity);
         _transform1 = transform;
     }
 

@@ -3,19 +3,15 @@ using UnityEngine;
 public class Hole : Item
 {
     [SerializeField] private int timePerHole = 3;
+    
     public override void Interact(IInteract person)
     {
-        var possible = person.Inventory.RemoveItem("Wood", 1);
-        Debug.Log(person.Inventory.GetCountSpecificItem("Wood"));
-        Debug.Log(possible);
-        if (!possible) return;
+        if (!person.Inventory.RemoveItem(ItemType.Wood, 1)) return;
         UIBehaviour.staticWoodCount -= 1;
         ObjectSpawner.HoleCounter -= 1;
-
         TimeManager._remainingTime += timePerHole;
-        Destroy(this);
         
-
+        Destroy(gameObject);
     }
 
     public void OnTriggerEnter(Collider other)
