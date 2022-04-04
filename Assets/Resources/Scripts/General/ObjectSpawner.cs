@@ -22,6 +22,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] public int relativeWoodProbability = 400;
     [SerializeField] public GameObject baril;
     [SerializeField] public GameObject hole;
+    [SerializeField] public GameObject hammer;
     [SerializeField] public int maxBarrels = 7;
 
 
@@ -60,9 +61,15 @@ public class ObjectSpawner : MonoBehaviour
         {
             randomPosition = Random.Range(0, _spawningPositions.Count - 1);
         } while (_presences[randomPosition]);
-       
         
-        if (woodChance <= relativeWoodProbability && BarrelCounter < maxBarrels)
+        if (woodChance < 10)
+        {
+            Instantiate(hammer, _spawningPositions[randomPosition]);
+            _presences[randomPosition] = true;
+            _trueCount += 1;
+        }
+        
+        else if (woodChance <= relativeWoodProbability && BarrelCounter < maxBarrels)
         {
             Instantiate(baril, _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;

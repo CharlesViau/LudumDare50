@@ -7,6 +7,9 @@ using General;
 
 public class Player : MonoBehaviour, IInteract, IMove
 {
+    public bool hammerActive;
+    public static float hammerTimer;
+    [SerializeField] public readonly float maxHammerTimer = 15f;
     public Inventory Inventory { get; set; }
     private const int InventoryCapacity = 3;
     private Transform _transform1;
@@ -35,6 +38,8 @@ public class Player : MonoBehaviour, IInteract, IMove
 
     private void Update()
     {
+        if (hammerTimer <= 0)
+            hammerActive = false;
         if (Input.GetButtonDown(InteractAction))
         {
             Interact();

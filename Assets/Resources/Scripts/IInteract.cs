@@ -4,6 +4,7 @@ public interface IInteract
 
     public abstract void Interact();
     Inventory Inventory{ get; set; }
+    
 }
 
 

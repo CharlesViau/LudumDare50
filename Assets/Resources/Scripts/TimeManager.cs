@@ -6,6 +6,7 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
+    
 
     //IMPORTANT change remaining time t0 90f
     public static float _remainingTime;
@@ -24,6 +25,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Player.hammerTimer -= Time.deltaTime;
         _remainingTime -= Time.deltaTime;
         _elapsedTime += Time.deltaTime;
 

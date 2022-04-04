@@ -8,13 +8,36 @@ public class Hole : Item
     
     public override void Interact(IInteract person)
     {
-        if (!person.Inventory.RemoveItem(ItemType.Wood, 1)) return;
-        UIBehaviour.staticWoodCount -= 1;
+        if (TryGetComponent<Player>(out var player) && player.hammerActive)
+        {
+            ObjectSpawner.HoleCounter -= 1;
+            TimeManager._remainingTime += timePerHole;
+            Instantiate(DestructionSound);
+            Destroy(gameObject);
+        }
+        else if (person.Inventory.RemoveItem(ItemType.Wood, 1))
+        {
+            UIBehaviour.staticWoodCount -= 1;
+            ObjectSpawner.HoleCounter -= 1;
+            TimeManager._remainingTime += timePerHole;
+            Instantiate(DestructionSound);
+            Destroy(gameObject);
+        }
+    }
+
+    public void Interact(Player person)
+    {
+        if (!person.hammerActive)
+        {
+            if (!person.Inventory.RemoveItem(ItemType.Wood, 1)) return;
+            UIBehaviour.staticWoodCount -= 1;
+        }
         ObjectSpawner.HoleCounter -= 1;
         TimeManager._remainingTime += timePerHole;
         Instantiate(DestructionSound);
         Destroy(gameObject);
     }
+
 
     public void OnTriggerEnter(Collider other)
     {

@@ -38,5 +38,6 @@ public abstract class Item : MonoBehaviour, IInteractable
 public enum ItemType
 {
     Wood,
-    Hole
+    Hole,
+    Hammer
 }
