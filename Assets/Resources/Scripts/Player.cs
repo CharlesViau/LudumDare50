@@ -8,7 +8,7 @@ using General;
 public class Player : MonoBehaviour, IInteract, IMove
 {
     public Inventory Inventory { get; set; }
-    private const int InventoryCapacity = 5;
+    private const int InventoryCapacity = 3;
     private Transform _transform1;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
