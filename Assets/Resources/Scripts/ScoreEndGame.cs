@@ -3,7 +3,7 @@ using TMPro;
 public class ScoreEndGame : MonoBehaviour
 {
     public TextMeshProUGUI scoreTime;
-    private float timeScoreDuration = KeepOvertime.timeDuration;
+    private float timeScoreDuration = TimeManager._elapsedTime;
     private int seconds;
     private void Awake()
     {
