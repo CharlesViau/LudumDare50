@@ -23,7 +23,9 @@ public class UIBehaviour : MonoBehaviour
     void Update()
     {
         woodCount.text = staticWoodCount.ToString();
-        if (staticWoodCount >= _player.Inventory._capacity)
+        //why the fuck would that not work
+        //if (staticWoodCount >= _player.Inventory._capacity)
+        if (staticWoodCount >= 3)
             woodCount.color = Color.red;
         else
             woodCount.color = Color.white;
