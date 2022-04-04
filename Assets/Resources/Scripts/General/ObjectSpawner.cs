@@ -13,17 +13,17 @@ public class ObjectSpawner : MonoBehaviour
     
     
 
-    [SerializeField] public float timeMod = 1.001f;
+    [SerializeField] public float timeMod = 1.0005f;
     private float _timeCounter;
 
-    private static float _timeThreshold = 2;
+    private static float _timeThreshold = 2f;
 
     //relative wood probability is the probability to get wood over hole /1000
     [SerializeField] public int relativeWoodProbability = 400;
     [SerializeField] public GameObject baril;
     [SerializeField] public GameObject hole;
     [SerializeField] public GameObject hammer;
-    [SerializeField] public int maxBarrels = 7;
+    [SerializeField] public int maxBarrels = 5;
 
 
     public void Awake()
@@ -40,7 +40,7 @@ public class ObjectSpawner : MonoBehaviour
         _timeCounter += Time.deltaTime;
         if (!(_timeCounter >= _timeThreshold)) return;
         _timeCounter -= _timeThreshold;
-        _timeThreshold /= timeMod;
+        if (!(_timeThreshold <= 1)) _timeThreshold /= timeMod;
         GenerateItem();
     }
 

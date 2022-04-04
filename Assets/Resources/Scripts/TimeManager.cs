@@ -14,7 +14,6 @@ public class TimeManager : MonoBehaviour
 
     public static float _elapsedTime = 0f;
     [SerializeField] public TextMeshProUGUI timeText;
-    [SerializeField] public float holeScaling = 1.002f;
     // Start is called before the first frame update
 
     private void Awake()
