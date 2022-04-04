@@ -9,6 +9,7 @@ public class VolumeSliderManager : MonoBehaviour
     {
         audioSrc = GetComponent<AudioSource>();
     }
+    public static float audioVolume = 1.0f;
 
     // Update is called once per frame
     void Update()
