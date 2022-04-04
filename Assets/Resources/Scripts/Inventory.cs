@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Inventory
 {
-    private readonly int _capacity;
+    public readonly int _capacity;
     private int Count => _content.Sum(couple => couple.Value);
 
     private readonly Dictionary<ItemType, int> _content;
