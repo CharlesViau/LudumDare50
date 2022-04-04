@@ -18,8 +18,6 @@ public class Inventory
 
     public bool AddItem(ItemType item, int quantity, out int over)
     {
-        Debug.Log("Attempt to add");
-        Debug.Log(Count);
         if (Count >= _capacity)
         {
             over = 0;
@@ -28,7 +26,6 @@ public class Inventory
         
         if (!_content.ContainsKey(item))
         {
-            Debug.Log("Create Key " + item);
             _content.Add(item, 0);
         }
 
@@ -36,13 +33,11 @@ public class Inventory
         {
             
             _content[item] += quantity;
-            Debug.Log(_content[item]);
             over = 0;
             return true;
         }
         over = Count + quantity - _capacity;
         _content[item] += _capacity - Count;
-        Debug.Log(Count);
         return true;
     }
 

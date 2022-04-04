@@ -12,11 +12,11 @@ public class TimeManager : MonoBehaviour
     public static float _remainingTime = 120f;
     private float _initialTime;
 
-    private static float _elapsedTime = 0f;
+    public static float _elapsedTime = 0f;
     [SerializeField] public GameObject Water;
     [SerializeField] public TextMeshProUGUI timeText;
     [SerializeField] public float holeScaling = 1.002f;
-    [SerializeField] private int waterDelta = 2;
+    [SerializeField] private int waterDelta = 5;
     // Start is called before the first frame update
 
     private void Awake()
