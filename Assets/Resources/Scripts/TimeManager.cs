@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -11,8 +8,8 @@ public class TimeManager : MonoBehaviour
 {
 
     //IMPORTANT change remaining time t0 90f
-    public static float _remainingTime = 90f;
-    private float _initialTime;
+    public static float _remainingTime;
+    public static readonly float _initialTime = 90f;
 
     public static float _elapsedTime = 0f;
     [SerializeField] public TextMeshProUGUI timeText;
@@ -21,7 +18,7 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        _initialTime = _remainingTime;
+        _remainingTime = _initialTime;
     }
 
     // Update is called once per frame
