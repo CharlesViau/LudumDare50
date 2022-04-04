@@ -3,13 +3,12 @@ using UnityEngine;
 public class VolumeSliderManager : MonoBehaviour
 {
     private AudioSource audioSrc;
-
-    private float audioVolume = 1.0f;
+    public static float audioVolume = 1.0f;
     void Start()
     {
         audioSrc = GetComponent<AudioSource>();
     }
-    public static float audioVolume = 1.0f;
+    
 
     // Update is called once per frame
     void Update()
