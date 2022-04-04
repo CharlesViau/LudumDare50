@@ -9,6 +9,8 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
+
+    //IMPORTANT change remaining time t0 90f
     public static float _remainingTime = 10f;
     private float _initialTime;
 
@@ -36,7 +38,14 @@ public class TimeManager : MonoBehaviour
 
         //updating UI element text
         int roundedTime = (int)_remainingTime;
-        timeText.text = ((int)roundedTime / 60).ToString() + ":" + ((int)roundedTime % 60).ToString();
+        int seconds = (int)roundedTime % 60;
+
+        timeText.text = ((int)roundedTime / 60).ToString() + ":" + (seconds < 10 ? "0" : "") + (seconds.ToString());
+
+        if (_remainingTime <= 10f)
+            timeText.color = Color.red;
+        else
+            timeText.color = Color.white;
 
         //make water go up according to time
         //the function I made is complete trash - if currentTime goes above initialTime the water goes down and everything fucks up
