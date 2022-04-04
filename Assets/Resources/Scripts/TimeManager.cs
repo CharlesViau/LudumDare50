@@ -38,7 +38,11 @@ public class TimeManager : MonoBehaviour
 
         //make water go up according to time
         //the function I made is complete trash - if currentTime goes above initialTime the water goes down and everything fucks up
-        Water.transform.position -= new Vector3(0, waterDelta * (_initialTime - _remainingTime) / _initialTime, 0);
+        foreach (Transform child in Water.transform)
+        {
+            child.transform.position -= new Vector3(0, waterDelta * (_initialTime - _remainingTime) / _initialTime, 0);
+        }
+        
 
         //make maxHoles scale up as time advances
 
