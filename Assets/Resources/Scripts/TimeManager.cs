@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 
@@ -13,7 +14,8 @@ public class TimeManager : MonoBehaviour
 
     private static float _elapsedTime = 0f;
     [SerializeField] public GameObject Water;
-    [SerializeField] public Text timeText;
+    [SerializeField] public TextMeshProUGUI timeText;
+    [SerializeField] public float holeScaling = 1.002f;
     [SerializeField] private int waterDelta = 2;
     // Start is called before the first frame update
 
@@ -34,7 +36,7 @@ public class TimeManager : MonoBehaviour
 
         //updating UI element text
         int roundedTime = (int)_remainingTime;
-        timeText.text = ((int)roundedTime / 60).ToString() + "\"" + ((int)roundedTime % 60).ToString();
+        timeText.text = ((int)roundedTime / 60).ToString() + ":" + ((int)roundedTime % 60).ToString();
 
         //make water go up according to time
         //the function I made is complete trash - if currentTime goes above initialTime the water goes down and everything fucks up
@@ -45,6 +47,8 @@ public class TimeManager : MonoBehaviour
         
 
         //make maxHoles scale up as time advances
+
+
 
         if (_remainingTime <= 0)
         {
