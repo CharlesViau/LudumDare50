@@ -17,7 +17,6 @@ public class ExplodeBarilComponent : Item
     {
         if (!collision.collider.CompareTag("Player")) return;
         Interact(collision.gameObject.GetComponent<Player>());
-        Destroy();
     }
 
     private void Destroy()
