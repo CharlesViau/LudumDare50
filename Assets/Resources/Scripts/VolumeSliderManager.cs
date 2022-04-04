@@ -16,8 +16,4 @@ public class VolumeSliderManager : MonoBehaviour
     {
         audioSrc.volume = audioVolume;
     }
-    public void ChangeVolume(float vol)
-    {
-        audioVolume = vol;
-    }
 }
