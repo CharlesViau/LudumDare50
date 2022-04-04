@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
 
     //IMPORTANT change remaining time t0 90f
     public static float _remainingTime;
-    public static readonly float _initialTime = 90f;
+    public static readonly float _initialTime = 60f;
 
     public static float _elapsedTime = 0f;
     [SerializeField] public TextMeshProUGUI timeText;

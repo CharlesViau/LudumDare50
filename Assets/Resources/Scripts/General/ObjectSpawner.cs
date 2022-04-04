@@ -24,6 +24,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] public GameObject hole;
     [SerializeField] public GameObject hammer;
     [SerializeField] public int maxBarrels = 5;
+    public int maxHoles = 73;
 
 
     public void Awake()
@@ -78,6 +79,7 @@ public class ObjectSpawner : MonoBehaviour
         
         else 
         {
+            if (HoleCounter >= maxHoles) return;
             Instantiate(hole,  _spawningPositions[randomPosition]);
             _presences[randomPosition] = true;
             _trueCount += 1;
