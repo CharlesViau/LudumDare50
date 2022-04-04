@@ -25,6 +25,8 @@ public class UIBehaviour : MonoBehaviour
         woodCount.text = staticWoodCount.ToString();
         if (staticWoodCount >= 5)
             woodCount.color = Color.red;
+        else
+            woodCount.color = Color.white;
     }
 
 }
