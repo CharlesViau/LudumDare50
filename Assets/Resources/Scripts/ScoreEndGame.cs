@@ -7,7 +7,6 @@ public class ScoreEndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        scoreTime.text = "Your score was " + KeepOvertime.timeDuration.ToString() + "points.";
+        scoreTime.text = "Your score was " + KeepOvertime.timeDuration + " points.";
     }
 }

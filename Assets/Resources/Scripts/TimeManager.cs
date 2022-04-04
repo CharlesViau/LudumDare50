@@ -9,7 +9,7 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    public static float _remainingTime = 10f;
+    public static float _remainingTime = 20f;
     private float _initialTime;
 
     public static float _elapsedTime = 0f;

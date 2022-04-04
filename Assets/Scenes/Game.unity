@@ -257,6 +257,17 @@ Transform:
   m_Father: {fileID: 465618823}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &42754965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5229550310021304485, guid: d68b0cb37a162ea49af500a583c38bbc, type: 3}
+  m_PrefabInstance: {fileID: 1199501731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &45229143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Water: {fileID: 681996943}
-  timeText: {fileID: 1751218204}
+  timeText: {fileID: 42754965}
   holeScaling: 1.002
   waterDelta: 2
 --- !u!4 &495052185
@@ -5838,17 +5849,6 @@ Transform:
   m_Father: {fileID: 465618823}
   m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751218204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2449182273066898187, guid: d68b0cb37a162ea49af500a583c38bbc, type: 3}
-  m_PrefabInstance: {fileID: 1199501731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1757744717
 GameObject:
   m_ObjectHideFlags: 0
