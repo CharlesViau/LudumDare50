@@ -11,7 +11,7 @@ public class TimeManager : MonoBehaviour
 {
 
     //IMPORTANT change remaining time t0 90f
-    public static float _remainingTime = 10f;
+    public static float _remainingTime = 90f;
     private float _initialTime;
 
     public static float _elapsedTime = 0f;
@@ -22,10 +22,6 @@ public class TimeManager : MonoBehaviour
     private void Awake()
     {
         _initialTime = _remainingTime;
-    }
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
