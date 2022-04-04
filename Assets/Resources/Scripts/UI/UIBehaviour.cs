@@ -23,6 +23,8 @@ public class UIBehaviour : MonoBehaviour
     void Update()
     {
         woodCount.text = staticWoodCount.ToString();
+        if (staticWoodCount >= 5)
+            woodCount.color = Color.red;
     }
 
 }

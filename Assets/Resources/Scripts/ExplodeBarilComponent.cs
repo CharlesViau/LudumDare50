@@ -7,6 +7,7 @@ public class ExplodeBarilComponent : Item
 
     public override void Interact(IInteract person)
     {
+        
         if (!person.Inventory.AddItem(ItemType.Wood, 1, out var over)) return;
         UIBehaviour.staticWoodCount += 1;
         Destroy();
