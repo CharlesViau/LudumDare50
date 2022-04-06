@@ -53,6 +53,8 @@ public class ObjectSpawner : MonoBehaviour
             {
                 _presences[i] = false;
             }
+
+            _trueCount = 0;
         }
         
         var woodChance = Random.Range(0, 1000);
